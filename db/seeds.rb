@@ -7,9 +7,13 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 people = Person.create([
-    { height: 175, weight: 180, prediction: 'dog' },
-    { height: 130, weight: 125, prediction: 'dog' },
-    { height: 155, weight: 157, prediction: 'cat' },
-    { height: 123, weight: 85, prediction: 'dog' },
-    { height: 95, weight: 115, prediction: 'cat' }
+    { height: 68, weight: 145, bmi: 22.044766435986162, prediction: 'dog' },
+    { height: 66, weight: 170, bmi: 27.435720844811755, prediction: 'cat' },
+    { height: 70, weight: 120, bmi: 17.216326530612243, prediction: 'cat' },
+    { height: 60, weight: 110, bmi: 21.480555555555554, prediction: 'dog' },
+    { height: 58, weight: 135, bmi: 28.21195005945303, prediction: 'cat' },
+    { height: 63, weight: 92, bmi: 16.295288485764676, prediction: 'cat' },
+    { height: 82, weight: 185, bmi: 19.341909577632364, prediction: 'dog' },
+    { height: 75, weight: 200, bmi: 24.995555555555555, prediction: 'cat' },
+    { height: 78, weight: 135, bmi: 15.599112426035502, prediction: 'cat' }
 ])
