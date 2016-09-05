@@ -9,7 +9,7 @@ class PeopleController < ApplicationController
   end
 
   def new
-    @person = Article.new
+    @person = Person.new
   end
 
   def edit
@@ -18,6 +18,8 @@ class PeopleController < ApplicationController
 
   def create
     @person = Person.new(person_params)
+    bmi_calculator
+    dog_or_cat
     if @person.save
       redirect_to @person
     else
@@ -30,18 +32,16 @@ class PeopleController < ApplicationController
     @person = Person.find(params[:id])
     bmi = ( @person[:weight]/(@person[:height] * @person[:height]) ) * 703
     @person[:bmi] = bmi
-    @person.save
   end
 
   private
   def dog_or_cat
     @person = Person.find(params[:id])
-    if @person[:bmi] > 25 || @person[:bmi] < 7
+    if @person[:bmi] > 25 || @person[:bmi] < 18
       @person[:prediction] = 'cat'
     else
       @person[:prediction] = 'dog'
     end
-    @person.save
   end
 
   private

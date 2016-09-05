@@ -3,44 +3,53 @@
 one: average height, normal weight
   height: 68 #5'8 = 68in
   weight: 145
+  bmi: 22.044766435986162
   prediction: dog
 
 two: average height, overweight
   height: 66 #5'6 = 66in
   weight: 170
+  bmi: 27.435720844811755
   prediction: cat
 
 three: average height, under weight
   height: 70 #5'10 = 70in
   weight: 120
+  bmi: 17.216326530612243
   prediction: cat
 
 four: short height, normal weight
   height: 60 #5'0 = 60in
   weight: 110
+  bmi: 21.480555555555554
   prediction: dog
 
 five: short height, overweight
-  height: 50 #4'10 = 58in
+  height: 58 #4'10 = 58in
   weight: 135
+  bmi: 28.21195005945303
   prediction: cat
 
 six: short height, under weight
   height: 63 #5'3 = 63in
   weight: 92
+  bmi: 16.295288485764676
   prediction: cat
 
 seven: tall height, normal weight
   height: 82 #6'4 = 79in
   weight: 185
+  bmi: 19.341909577632364
   prediction: dog
 
 eight: tall height, overweight
   height: 75 #6'0 = 75in
   weight: 200
+  bmi: 24.995555555555555
   prediction: cat
 
 nine: tall height, under weight
   height: 78 #6'3 = 78in
   weight: 135
+  bmi: 15.599112426035502
   prediction: cat
