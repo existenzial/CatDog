@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160904213223) do
+ActiveRecord::Schema.define(version: 20160905190124) do
 
   create_table "people", force: :cascade do |t|
     t.integer  "height"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20160904213223) do
     t.string   "prediction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float    "bmi"
   end
 
 end
