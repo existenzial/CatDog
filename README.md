@@ -1,24 +1,15 @@
-# README
+#CatDog
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
+a fun little Rails app to predict whether a person prefers dogs or cats based on their height and weight
 
 * Ruby version
+2.3.1
 
-* System dependencies
+* Rails version
+5.0.0.1
 
-* Configuration
+* Dependencies
 
-* Database creation
+* Test Suite
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Deployment
