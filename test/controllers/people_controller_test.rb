@@ -5,6 +5,8 @@ class PeopleControllerTest < ActionDispatch::IntegrationTest
   #   assert true
   # end
   
+  self.use_instantiated_fixtures = true
+
   test "should not save a person without a height" do
 
   end

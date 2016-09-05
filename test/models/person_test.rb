@@ -5,6 +5,8 @@ class PersonTest < ActiveSupport::TestCase
   #   assert true
   # end
 
+  self.use_instantiated_fixtures = true
+
   # Height
   test "height should be an integer" do
 
@@ -17,6 +19,7 @@ class PersonTest < ActiveSupport::TestCase
   test "height should be less than 96 inches" do
 
   end
+
   # Weight
   test "weight should be an integer" do
 
@@ -29,6 +32,7 @@ class PersonTest < ActiveSupport::TestCase
   test "weight should be less than 350 lbs" do
 
   end
+
   # BMI
   test "bmi should be a float" do
 
@@ -39,6 +43,15 @@ class PersonTest < ActiveSupport::TestCase
   end
 
   test "bmi should be less than 40" do
+
+  end
+
+  # Prediction
+  test "prediction should be a dog if bmi is within ta healthy range" do
+
+  end
+
+  test "prediction should be a cat if bmi is within an unhealthy range" do
 
   end
 
