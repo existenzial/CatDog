@@ -19,6 +19,6 @@ class Person < ApplicationRecord
 
   validates :prediction,
     on: :save,
-    presence: true,
+    presence: true
 
 end
