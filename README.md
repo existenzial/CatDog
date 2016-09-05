@@ -13,11 +13,9 @@ a fun little Rails app to predict whether a person prefers dogs or cats based on
 
 ## <a name="dependencies"></a> Dependencies
 
-* Ruby v.
-2.3.1
+* ```Ruby 2.3.1```
 
-* Rails v.
-5.0.0.1
+* ```Rails 5.0.0.1```
 
 ## <a name="installation"></a> Installing CatDog
 To **install** the app:
