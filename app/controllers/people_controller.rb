@@ -29,16 +29,13 @@ class PeopleController < ApplicationController
     end
   end
 
-  private
   def bmi_calculator
-
     bmi =  ( (@person[:weight].to_f)/(@person[:height].to_f * @person[:height].to_f) ) * 703
     # bmi = 19
     @person[:bmi] = bmi
     puts "This is your bmi after calculation  #{@person[:bmi]}"
   end
 
-  private
   def dog_or_cat
     if @person[:bmi] > 25 || @person[:bmi] < 18
       @person[:prediction] = 'cat'
