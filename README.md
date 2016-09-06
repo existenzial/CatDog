@@ -31,7 +31,12 @@ cd CatDog
 bundle install
 ```
 ## <a name="testing"></a>Running the Test Suite
-To **run** the tests:
+Check for migrations and seed your db:
+```bash
+rake db:test:prepare
+```
+
+To **run** the tests individually:
 ```bash
 # Home Controller:
 ruby -I. test/controllers/home_controller_test.rb
@@ -41,6 +46,12 @@ ruby -I. test/controllers/people_controller_test.rb
 
 # Person Model:
 ruby -I. test/models/person_test.rb
+```
+To **run** all tests:
+```bash
+rake
+# or
+rake test
 ```
 
 ## <a name="deployment"></a>Running the App Locally
