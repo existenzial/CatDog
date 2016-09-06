@@ -19,8 +19,8 @@ class PeopleController < ApplicationController
   def create
     @person = Person.new(person_params)
 
-    bmi_calculator
-    dog_or_cat
+    @person.update(:bmi=>bmi_calculator, :prediction=>dog_or_cat)
+    puts "This is your bmi  #{@person[:bmi]}"
 
     if @person.save
       redirect_to @person
@@ -31,15 +31,15 @@ class PeopleController < ApplicationController
 
   private
   def bmi_calculator
-    bmi = ( @person[:weight]/(@person[:height] * @person[:height]) ) * 703
+    bmi =  @person[:weight]/(@person[:height] * @person[:height]) * 703
+    # bmi = 19
     @person[:bmi] = bmi
-    @person.save
+    puts "This is your bmi after calculation  #{@person[:bmi]}"
   end
 
   private
   def dog_or_cat
     if @person[:bmi] > 25 || @person[:bmi] < 18
-      print @person[:bmi]
       @person[:prediction] = 'cat'
     else
       @person[:prediction] = 'dog'
