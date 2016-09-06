@@ -1,4 +1,5 @@
 class Person < ApplicationRecord
+  
   validates :height,
     on: :create,
     presence: true,

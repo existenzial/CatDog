@@ -25,21 +25,21 @@ class PeopleController < ApplicationController
     if @person.save
       redirect_to @person
     else
-      render 'home'
+      redirect_to home_index_path
     end
   end
 
   private
   def bmi_calculator
-    @person = Person.find(params[:id])
     bmi = ( @person[:weight]/(@person[:height] * @person[:height]) ) * 703
     @person[:bmi] = bmi
+    @person.save
   end
 
   private
   def dog_or_cat
-    @person = Person.find(params[:id])
     if @person[:bmi] > 25 || @person[:bmi] < 18
+      print @person[:bmi]
       @person[:prediction] = 'cat'
     else
       @person[:prediction] = 'dog'

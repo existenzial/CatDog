@@ -1,7 +1,12 @@
-<h1>Just what I thought...</h1>
-
-<p>
+<div id="show-header">
+  <h1>Just what I thought...</h1>
+</div>
+<p id="p-prediction">
   A <%= @person.prediction %> person.
 </p>
 
-<%= link_to 'Back', home_path %>
+<div id="footer">
+  <%= link_to home_index_path do %>
+    <%= image_tag("back_arrow.png") %>
+  <% end %>
+</div>

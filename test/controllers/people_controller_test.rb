@@ -33,4 +33,13 @@ class PeopleControllerTest < ActionDispatch::IntegrationTest
     assert_not @person.save, "@person saved without a prediction"
   end
 
+  test "should create a new person if given a height, weight, bmi & prediction" do
+    @person = Person.new
+    @person[:height] = 60
+    @person[:weight] = 136
+    @person[:bmi] = @person.bmi_calculator
+    @person[:prediction] = @person.dog_or_cat
+    assert @person.save, "@person did not save with a height, weight, bmi & prediction"
+  end
+
 end
