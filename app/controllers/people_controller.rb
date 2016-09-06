@@ -31,7 +31,8 @@ class PeopleController < ApplicationController
 
   private
   def bmi_calculator
-    bmi =  @person[:weight]/(@person[:height] * @person[:height]) * 703
+
+    bmi =  ( (@person[:weight].to_f)/(@person[:height].to_f * @person[:height].to_f) ) * 703
     # bmi = 19
     @person[:bmi] = bmi
     puts "This is your bmi after calculation  #{@person[:bmi]}"
