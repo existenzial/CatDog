@@ -26,6 +26,9 @@ git clone https://github.com/existenzial/CatDog.git
 
 # Navigate to the newly cloned directory:
 cd CatDog
+
+# Install the dependencies
+bundle install
 ```
 ## <a name="testing"></a>Running the Test Suite
 To **run** the tests:
