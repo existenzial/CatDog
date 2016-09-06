@@ -3,9 +3,25 @@
 </div>
 <p id="p-prompt">Tell me a little bit about yourself...</p>
 <div id="p-inputs">
-  <label for="p-height">Height</label>
-  <input id="p-height" placeholder="in inches" required></input>
-  <label for="p-weight">Weight</label>
-  <input id="p-weight" placeholder="in lbs" required></input>
+  <%= form_for @person=Person.new do |f| %>
+    <%= f.label :height %>
+    <%= f.label :weight %><br>
+    <%= f.text_field :height, placeholder: "in inches" %>
+    <%= f.text_field :weight, placeholder: "in lbs" %>
+    <%= f.submit 'Submit', :class => "submit" %>
+
+    <div id="error_messages">
+      <% if @person.errors.any? %>
+      <h2>
+        <%= pluralize(@person.errors.count, "error") %> Whoops! Please fix these first:
+      </h2>
+      <ul>
+        <% @person.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 

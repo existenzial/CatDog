@@ -29,6 +29,21 @@ body {
   text-align: center;
 
   label {
+    padding: 4%;
+  }
+
+  input {
+    padding: .8%;
+  }
+
+  .submit {
     padding: 1%;
+    border: none;
+    outline: none;
+    background: orange;
+    &:hover {
+      background: white;
+      border: 1px solid orange;
+    }
   }
 }

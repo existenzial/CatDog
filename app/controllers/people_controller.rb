@@ -19,8 +19,8 @@ class PeopleController < ApplicationController
   def create
     @person = Person.new(person_params)
 
-    @person.bmi_calculator
-    @person.dog_or_cat
+    bmi_calculator
+    dog_or_cat
 
     if @person.save
       redirect_to @person
