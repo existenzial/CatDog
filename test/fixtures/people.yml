@@ -1,5 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+zero: # average height, normal weight
+  height: 64 #5'4 = 64in
+  weight: 135
+  bmi:
+  prediction:
+
 one: # average height, normal weight
   height: 68 #5'8 = 68in
   weight: 145

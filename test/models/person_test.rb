@@ -1,63 +1,126 @@
 require File.expand_path("../../test_helper", __FILE__)
 
 class PersonTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
 
   self.use_instantiated_fixtures = true
 
-  test "@person should be an instance of the Person model" do
+  test "should_be_an_instance_of_Person" do
     @person = Person.new
     assert_instance_of Person, @person, "@person is not an instance of the Person model"
   end
 
+  # Validations
+  test "height_is_validated" do
+    @person = people(:zero)
+    @person.height = nil
+    assert @person.valid?, "@person is valid when height is nil"
+  end
+
+  # test "invalid_height_throws_error" do
+  #   @person = people(:zero)
+  #   @person.height = nil
+  #   @person.valid?
+  #   assert_match /can't be blank/, @person.errors[:height].join, "height error not found"
+  # end
+
+  test "weight_is_validated" do
+    @person = people(:zero)
+    @person.weight = nil
+    assert @person.valid?, "@person is valid when weight is nil"
+  end
+
+  # test "invalid_weight_throws_error" do
+  #   @person = people(:zero)
+  #   @person.weight = nil
+  #   @person.valid?
+  #   assert_match /can't be blank/, @person.errors[:weight].join, "weight error not found"
+  # end
+
+  test "valid_with_height_and_weight" do
+    @person = people(:zero)
+    assert @person.valid?, "@person is not valid"
+  end
+
+  test "valid_with_all_attributes" do
+    @person = people(:one)
+    assert @person.valid?, "@person is not valid"
+  end
+
   # Height
-  test "@person[:height] should be an integer" do
-    assert @person[:height].is_a? Integer, "@person[:height] is not an integer"
+  test "height_is_an_integer" do
+    @person = people(:one)
+    assert @person.height.to_int, "height is not an integer"
   end
 
-  test "@person[:height] should be greater than 36 inches" do
-    assert_operator @person[:height], :>, 36, "@person[:height] is not greater than 36 inches"
+  test "height_is_greater_than_36_inches" do
+    @person = people(:one)
+    assert_not @person.height < 36, "height is not greater than 36 inches"
   end
 
-  test "@person[:height] should be less than 96 inches" do
-    assert_operator @person[:height], :<, 96, "@person[:height] is not less than 96 inches"
+  test "height_is_less_than_96_inches" do
+    @person = people(:one)
+    assert_not @person.height > 96, "height is not less than 96 inches"
   end
 
   # Weight
-  test "@person[:weight] should be an integer" do
-    assert @person[:weight].is_a? Integer, "@person[:weight] is not an integer"
+  test "weight_is_an_integer" do
+    @person = people(:one)
+    assert @person.weight.to_int, "weight is not an integer"
   end
 
-  test "@person[:weight] should be greater than 50 lbs" do
-    assert_operator @person[:weight], :>, 50, "@person[:weight] is not greater than 50 lbs"
+  test "weight_is_greater_than_50_lbs" do
+    @person = people(:one)
+    assert_not @person.weight < 50, "weight is less than 50 lbs"
   end
 
-  test "@person[:weight] should be less than 350 lbs" do
-    assert_operator @person[:weight], :<, 350, "@person[:weight] is not less than 350 lbs"
+  test "weight_is_less_than_350_lbs" do
+    @person = people(:one)
+    assert_not @person.weight > 350, "weight is greater than 350 lbs"
   end
 
   # BMI
-  test "@person[:bmi] should be a float" do
-    assert @person[:bmi].is_a? Float, "@person[:bmi] is not a float"
+  # test "bmi_can_be_calculated_from_height_and_weight" do
+  #   @person = people(:zero)
+  #   @person.bmi_calculator
+  #   assert_equal(23.170166015625, @person.bmi, "bmi could not be calculated from height and weight")
+  # end
+
+  # test "invalid_bmi_throws_error" do
+  #   @person = people(:three)
+  #   @person.bmi = nil
+  #   @person.valid?
+  #   assert_match /can't be blank/, @person.errors[:bmi].join, "bmi error not found"
+  # end
+
+  test "bmi_is_a_float" do
+    @person = people(:two)
+    assert @person.bmi.to_f, "bmi is not a float"
   end
 
-  test "@person[:bmi] should be greater than 4" do
-    assert_operator @person[:bmi], :>, 4, "@person[:bmi] is not greater than 4"
+  test "bmi_is_greater_than_4" do
+    @person = people(:three)
+    assert_not @person.bmi < 4, "bmi is less than 4"
   end
 
-  test "@person[:bmi] should be less than 40" do
-    assert_operator @person[:bmi], :<, 40, "@person[:bmi] is not less than 40"
+  test "bmi_is_less_than_40" do
+    @person = people(:three)
+    assert_not @person.bmi > 40, "bmi is greater than 40"
   end
 
   # Prediction
-  test "@person[:prediction] should be a dog if bmi is within a healthy range" do
-    assert_equal('dog', @person[:prediction], "person[:prediction] is not a dog")
-  end
 
-  test "@person[:prediction] should be a cat if bmi is within an unhealthy range" do
-    assert_equal('cat', @person[:prediction], "person[:prediction] is not a cat")
-  end
+  # test "prediction_is_dog_with_healthy_bmi" do
+  #   @person = people(:one)
+  #   bmi_calculator
+  #   dog_or_cat
+  #   assert_equal('dog', @person.prediction, "prediction is not a dog with healthy bmi")
+  # end
+  #
+  # test "prediction_is_cat_with_unhealthy_bmi" do
+  #   @person = people(:one)
+  #   bmi_calculator
+  #   dog_or_cat
+  #   assert_equal('cat', @person.prediction, "prediction is not a cat with unhealthy bmi")
+  # end
 
 end
