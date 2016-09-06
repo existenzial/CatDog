@@ -29,7 +29,7 @@ body {
   text-align: center;
 
   label {
-    padding: 4%;
+    padding-right: 9%;
   }
 
   input {
@@ -42,8 +42,7 @@ body {
     outline: none;
     background: orange;
     &:hover {
-      background: white;
-      border: 1px solid orange;
+      background: rgba(250,192,87, 0.8);
     }
   }
 }
