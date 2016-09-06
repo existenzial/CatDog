@@ -1,4 +1,4 @@
-require 'test_helper'
+require File.expand_path("../../test_helper", __FILE__)
 
 class PeopleControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do

@@ -34,7 +34,7 @@ bundle install
 To **run** the tests:
 ```bash
 # Home Controller:
-ruby -I. test/controllers/home_controller.rb
+ruby -I. test/controllers/home_controller_test.rb
 
 # People Controller:
 ruby -I. test/controllers/people_controller_test.rb
