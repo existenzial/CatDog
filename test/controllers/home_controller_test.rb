@@ -9,16 +9,13 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  # test "should_redirect_to_person_prediction_on_valid_submit" do
-  #   @person = people(:zero_one)
-  #   get person_path(@person[:id])
-  #   assert_select "button", "People#show"
-  # end
-  #
-  # test "should_redirect_to_index_on_invalid_submit" do
-  #   @person = people(:zero_four)
-  #   get person_path(@person[:id])
-  #   assert_redirected_to home_index_url
-  # end
+  test "should_get_person_path_on_valid_submit" do
+    @person = Person.new
+    @person.id = Person.last.id
+    @person.height = 58
+    @person.weight = 150
+    get person_path(@person[:id])
+    assert_response :success
+  end
 
 end

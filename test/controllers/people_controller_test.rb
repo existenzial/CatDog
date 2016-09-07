@@ -46,22 +46,6 @@ class PeopleControllerTest < ActionDispatch::IntegrationTest
     assert_not @person.save, "saved without a weight"
   end
 
-  # test "should_not_save_a_person_without_a_bmi" do
-  #   @person = Person.new
-  #   @person.height = 60
-  #   @person.weight = 110
-  #   @person.prediction = 'dog'
-  #   assert_not @person.save, "saved without a bmi"
-  # end
-  #
-  # test "should_not_save_a_person_without_a_prediction" do
-  #   @person = Person.new
-  #   @person.height = 60
-  #   @person.weight = 110
-  #   @person.bmi = 21.480555555555554
-  #   assert_not @person.save, "saved without a prediction"
-  # end
-
   # Read
   test "should_read_a_person" do
     @person = people(:three)
@@ -107,10 +91,12 @@ class PeopleControllerTest < ActionDispatch::IntegrationTest
 
   test "should_update_prediction_with_new_bmi" do
     @person = people(:one)
+    new_bmi = ( (@person.weight.to_f)/(@person.height.to_f * @person.height.to_f) ) * 703
     patch person_url(@person), params: {
       person: {
         height: 69,
-        weight: 180
+        weight: 180,
+        bmi: new_bmi
       }
     }
     @person.reload
