@@ -16,25 +16,11 @@ class PersonTest < ActiveSupport::TestCase
     assert @person.valid?, "@person is valid when height is nil"
   end
 
-  # test "invalid_height_throws_error" do
-  #   @person = people(:zero)
-  #   @person.height = nil
-  #   @person.valid?
-  #   assert_match /can't be blank/, @person.errors[:height].join, "height error not found"
-  # end
-
   test "weight_is_validated" do
     @person = people(:zero_one)
     @person.weight = nil
     assert @person.valid?, "@person is valid when weight is nil"
   end
-
-  # test "invalid_weight_throws_error" do
-  #   @person = people(:zero)
-  #   @person.weight = nil
-  #   @person.valid?
-  #   assert_match /can't be blank/, @person.errors[:weight].join, "weight error not found"
-  # end
 
   test "valid_with_height_and_weight" do
     @person = people(:zero_one)
@@ -84,13 +70,6 @@ class PersonTest < ActiveSupport::TestCase
     @person.bmi = ( (@person.weight.to_f)/(@person.height.to_f * @person.height.to_f) ) * 703
     assert_equal(23.170166015625, @person.bmi, "bmi could not be calculated from height and weight")
   end
-
-  # test "invalid_bmi_throws_error" do
-  #   @person = people(:three)
-  #   @person.bmi = nil
-  #   @person.valid?
-  #   assert_match /can't be blank/, @person.errors[:bmi].join, "bmi error not found"
-  # end
 
   test "bmi_is_a_float" do
     @person = people(:two)
