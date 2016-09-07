@@ -31,6 +31,8 @@ class PeopleController < ApplicationController
     @person = Person.find(params[:id])
 
     if @person.update(person_params)
+      @person.update(:bmi=>bmi_calculator, :prediction=>dog_or_cat)
+      @person.reload
       redirect_to @person
     else
       redirect_to home_index_path
