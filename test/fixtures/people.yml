@@ -1,8 +1,20 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-zero: # average height, normal weight
+zero_one: # average height, normal weight
   height: 64 #5'4 = 64in
   weight: 135
+  bmi:
+  prediction:
+
+zero_two: # average height, overweight
+  height: 66 #5'4 = 64in
+  weight: 175
+  bmi:
+  prediction:
+
+zero_two: # average height, under weight
+  height: 70 #5'4 = 64in
+  weight: 120
   bmi:
   prediction:
 
