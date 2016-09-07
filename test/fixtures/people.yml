@@ -12,9 +12,15 @@ zero_two: # average height, overweight
   bmi:
   prediction:
 
-zero_two: # average height, under weight
+zero_three: # average height, under weight
   height: 70 #5'4 = 64in
   weight: 120
+  bmi:
+  prediction:
+
+zero_four: # invalid height, weight
+  height: 11
+  weight: 365
   bmi:
   prediction:
 

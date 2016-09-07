@@ -1,55 +1,138 @@
 require File.expand_path("../../test_helper", __FILE__)
 
 class PeopleControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
+
+  self.use_instantiated_fixtures = true
 
   # Routing
-  # test "should redirect to home_index_path on invalid submit" do
-  #
-  # end
-  #
-  # test "should show person on valid submit" do
-  #
-  # end
-  #
-  # # Data Handling
-  # test "should not create a person without a height" do
-  #   @person = Person.new
-  #   @person[:weight] = 145
-  #   assert_not @person.save, "@person saved without a height"
-  # end
-  #
-  # test "should not create a person without a weight" do
-  #   @person = Person.new
-  #   @person[:height] = 68
-  #   assert_not @person.save, "@person saved without a weight"
-  # end
-  #
-  # test "should not save a person without a bmi" do
-  #   @person = Person.new
-  #   @person[:height] = 60
-  #   @person[:weight] = 130
-  #   @person[:prediction] = dog_or_cat
-  #   assert_not @person.save, "@person saved without a bmi"
-  # end
-  #
-  # test "should not save a person without a prediction" do
-  #   @person = Person.new
-  #   @person[:height] = 60
-  #   @person[:weight] = 136
-  #   @person[:bmi] = bmi_calculator
-  #   assert_not @person.save, "@person saved without a prediction"
-  # end
-  #
-  # test "should create a new person if given a height, weight, bmi & prediction" do
-  #   @person = Person.new
-  #   @person[:height] = 60
-  #   @person[:weight] = 136
-  #   @person[:bmi] = bmi_calculator
-  #   @person[:prediction] = dog_or_cat
-  #   assert @person.save, "@person did not save with a height, weight, bmi & prediction"
-  # end
+  test "should_be_able_to_show_all_people" do
+    get people_url
+    assert_response :success
+  end
+
+  test "should_be_able_to_show_a_person" do
+    @person = people(:four)
+    get person_path(@person[:id])
+    assert_response :success
+  end
+
+  ## C - R - U - D
+  
+  # Create
+  test "should_create_a_person_with_all_attributes" do
+    @person = Person.new
+    assert_difference('Person.count') do
+      post people_url, params: {
+          person: {
+            height: 68,
+            weight: 145,
+            bmi: 22.044766435986162,
+            prediction: 'dog'
+          }
+        }
+    end
+    assert_redirected_to person_path(Person.last)
+  end
+
+  test "should_not_create_a_person_without_a_height" do
+    @person = Person.new
+    @person.weight = 145
+    assert_not @person.save, "saved without a height"
+  end
+
+  test "should_not_create_a_person_without_a_weight" do
+    @person = Person.new
+    @person.height = 68
+    assert_not @person.save, "saved without a weight"
+  end
+
+  test "should_not_save_a_person_without_a_bmi" do
+    @person = Person.new
+    @person.height = 60
+    @person.weight = 110
+    @person.prediction = 'dog'
+    assert_not @person.save, "saved without a bmi"
+  end
+
+  test "should_not_save_a_person_without_a_prediction" do
+    @person = Person.new
+    @person.height = 60
+    @person.weight = 110
+    @person.bmi = 21.480555555555554
+    assert_not @person.save, "saved without a prediction"
+  end
+
+  # Read
+  test "should_read_a_person" do
+    @person = people(:three)
+    assert Person.find(@person.id), "could not read person from the database"
+  end
+
+
+  # Update
+  test "should_update_height" do
+    @person = people(:one)
+    patch person_url(@person), params: {
+      person: {
+        height: 69
+      }
+    }
+    @person.reload
+    assert_equal 69, @person.height, "height could not be updated"
+  end
+
+  test "should_update_weight" do
+    @person = people(:one)
+    patch person_url(@person), params: {
+      person: {
+        weight: 180
+      }
+    }
+    @person.reload
+    assert_equal 180, @person.weight, "weight could not be updated"
+  end
+
+  test "should_update_bmi" do
+    @person = people(:one)
+    patch person_url(@person), params: {
+      person: {
+        bmi: 27.3659169550173
+      }
+    }
+    @person.reload
+    assert_equal 27.3659169550173, @person.bmi, "bmi could not be updated"
+  end
+
+  test "should_update_prediction" do
+    @person = people(:one)
+    patch person_url(@person), params: {
+      person: {
+        prediction: 'cat'
+      }
+    }
+    @person.reload
+    assert_equal 'cat', @person.prediction, "prediction could not be updated"
+  end
+
+  test "should_update_all_attributes" do
+    @person = people(:one)
+    patch person_url(@person), params: {
+      person: {
+        height: 69,
+        weight: 180,
+        bmi: 27.3659169550173,
+        prediction: 'cat'
+      }
+    }
+  end
+
+  # Delete
+  test "should_delete_a_person" do
+    @person = people(:two)
+    assert_difference('Person.count', -1) do
+      delete person_url(@person)
+    end
+    assert_redirected_to home_index_path, "could not delete a person from the database"
+  end
 
 end
