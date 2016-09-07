@@ -27,10 +27,28 @@ class PeopleController < ApplicationController
     end
   end
 
+  def update
+    @person = Person.find(params[:id])
+
+    if @person.update(person_params)
+      redirect_to @person
+    else
+      redirect_to home_index_path
+    end
+  end
+
+  def destroy
+    @person = Person.find(params[:id])
+    @person.destroy
+    redirect_to home_index_path
+  end
+
+  private
   def bmi_calculator
     @person[:bmi] = ( (@person[:weight].to_f)/(@person[:height].to_f * @person[:height].to_f) ) * 703
   end
 
+  private
   def dog_or_cat
     if @person[:bmi] > 25 || @person[:bmi] < 18
       @person[:prediction] = 'cat'
