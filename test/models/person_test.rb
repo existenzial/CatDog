@@ -11,7 +11,7 @@ class PersonTest < ActiveSupport::TestCase
 
   # Validations
   test "height_is_validated" do
-    @person = people(:zero)
+    @person = people(:zero_one)
     @person.height = nil
     assert @person.valid?, "@person is valid when height is nil"
   end
@@ -24,7 +24,7 @@ class PersonTest < ActiveSupport::TestCase
   # end
 
   test "weight_is_validated" do
-    @person = people(:zero)
+    @person = people(:zero_one)
     @person.weight = nil
     assert @person.valid?, "@person is valid when weight is nil"
   end
@@ -37,7 +37,7 @@ class PersonTest < ActiveSupport::TestCase
   # end
 
   test "valid_with_height_and_weight" do
-    @person = people(:zero)
+    @person = people(:zero_one)
     assert @person.valid?, "@person is not valid"
   end
 
@@ -79,11 +79,11 @@ class PersonTest < ActiveSupport::TestCase
   end
 
   # BMI
-  # test "bmi_can_be_calculated_from_height_and_weight" do
-  #   @person = people(:zero)
-  #   @person.bmi_calculator
-  #   assert_equal(23.170166015625, @person.bmi, "bmi could not be calculated from height and weight")
-  # end
+  test "bmi_can_be_calculated_from_height_and_weight" do
+    @person = people(:zero_one)
+    @person.bmi = ( (@person.weight.to_f)/(@person.height.to_f * @person.height.to_f) ) * 703
+    assert_equal(23.170166015625, @person.bmi, "bmi could not be calculated from height and weight")
+  end
 
   # test "invalid_bmi_throws_error" do
   #   @person = people(:three)
@@ -108,19 +108,30 @@ class PersonTest < ActiveSupport::TestCase
   end
 
   # Prediction
+  test "prediction_is_dog_with_healthy_bmi" do
+    @person = people(:zero_one)
+    # bmi_calculator
+    @person.bmi = ( (@person.weight.to_f)/(@person.height.to_f * @person.height.to_f) ) * 703
+    # dog_or_cat
+    if @person[:bmi] > 25 || @person[:bmi] < 18
+      @person[:prediction] = 'cat'
+    else
+      @person[:prediction] = 'dog'
+    end
+    assert_equal('dog', @person.prediction, "prediction is not a dog with healthy bmi")
+  end
 
-  # test "prediction_is_dog_with_healthy_bmi" do
-  #   @person = people(:one)
-  #   bmi_calculator
-  #   dog_or_cat
-  #   assert_equal('dog', @person.prediction, "prediction is not a dog with healthy bmi")
-  # end
-  #
-  # test "prediction_is_cat_with_unhealthy_bmi" do
-  #   @person = people(:one)
-  #   bmi_calculator
-  #   dog_or_cat
-  #   assert_equal('cat', @person.prediction, "prediction is not a cat with unhealthy bmi")
-  # end
+  test "prediction_is_cat_with_unhealthy_bmi" do
+    @person = people(:zero_two)
+    # bmi_calculator
+    @person.bmi = ( (@person.weight.to_f)/(@person.height.to_f * @person.height.to_f) ) * 703
+    # dog_or_cat
+    if @person[:bmi] > 25 || @person[:bmi] < 18
+      @person[:prediction] = 'cat'
+    else
+      @person[:prediction] = 'dog'
+    end
+    assert_equal('cat', @person.prediction, "prediction is not a dog with healthy bmi")
+  end
 
 end
