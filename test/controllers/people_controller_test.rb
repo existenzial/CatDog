@@ -68,7 +68,6 @@ class PeopleControllerTest < ActionDispatch::IntegrationTest
     assert Person.find(@person.id), "could not read person from the database"
   end
 
-
   # Update
   test "should_update_height" do
     @person = people(:one)

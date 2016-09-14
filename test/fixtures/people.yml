@@ -7,13 +7,13 @@ zero_one: # average height, normal weight
   prediction:
 
 zero_two: # average height, overweight
-  height: 66 #5'4 = 64in
+  height: 66 #5'6 = 66in
   weight: 175
   bmi:
   prediction:
 
 zero_three: # average height, under weight
-  height: 70 #5'4 = 64in
+  height: 68 #5'8 = 68in
   weight: 120
   bmi:
   prediction:

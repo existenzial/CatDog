@@ -1,4 +1,6 @@
 # CatDog
+[![Code Climate](https://codeclimate.com/github/existenzial/CatDog/badges/gpa.svg)](https://codeclimate.com/github/existenzial/CatDog)
+
 ![CatDog](app/assets/images/logo.png)
 
 a fun little Rails app to predict whether a person prefers dogs or cats based on their height and weight
